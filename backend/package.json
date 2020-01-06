@@ -1,0 +1,31 @@
+{
+  "name": "ajaa-fst-blockchain-backend_osl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "^8.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ng.bluemix.net:Cloud-studio/Prototypes/ajaa-fst_osl/ajaa-fst-blockchain-backend_osl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cfenv": "^1.2.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "express": "^4.16.4",
+    "fabric-ca-client": "~1.4.0",
+    "fabric-network": "~1.4.0",
+    "mocha": "^6.1.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9"
+  }
+}

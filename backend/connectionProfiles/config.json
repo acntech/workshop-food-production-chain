@@ -1,0 +1,9 @@
+{
+    "connection_file": "connection.json",
+    "appAdmin": "user1",
+    "appAdminSecret": "user1pw",
+    "orgMSPID": "consortiummsp",
+    "caName": "n2b9668-consortiumca0.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7054",
+    "userName": "user1",
+    "gatewayDiscovery": { "enabled": true, "asLocalhost": false }
+}

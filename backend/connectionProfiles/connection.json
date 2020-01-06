@@ -1,0 +1,62 @@
+{
+    "name": "consortinsurc1",
+    "description": "Network on IBP v2",
+    "version": "1.0.0",
+    "client": {
+        "organization": "consortiummsp"
+    },
+    "organizations": {
+        "consortiummsp": {
+            "mspid": "consortiummsp",
+            "peers": [
+                "n2b9668-consortiumpeer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051"
+            ],
+            "certificateAuthorities": [
+                "n2b9668-consortiumcaadmin.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7054"
+            ]
+        },
+        "insurancemsp": {
+            "mspid": "insurancemsp",
+            "peers": [
+                "n2b9668-insurance1peer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051"
+            ]
+        }
+    },
+    "orderers": {
+        "n2b9668-orderingservice1.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n2b9668-orderingservice1.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcigAwIBAgIUQGko+V0t1ziKczegCpgaXV+g3lIwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVy\nQ0EtdGxzMB4XDTE5MDkxOTExMDcwMFoXDTM0MDkxNTExMDcwMFowZTELMAkGA1UE\nBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxl\nZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVyQ0EtdGxzMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEn1sU4wZbXP6o5jdyLh0tcxoxMKTMXXFh\nd2xysrXLP3kmnO+Eol6cQpuqW4mLi0rp0oIf6Z6+xQjrCqTnT5YdUqNWMFQwDgYD\nVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFCPhSZBJ\nkQNFLeJj69iPAhzyq3LoMA8GA1UdEQQIMAaHBApfDRUwCgYIKoZIzj0EAwIDRwAw\nRAIgGDKmn+Z2xW2RpXopDM7Xj4g4PpQq5UYgoAYLc7S08OsCIAyuK9zfq/A3Glze\nSXSe3I/zSNA3prH6Oq5NPzVyyk3w\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "n2b9668-insurance1peer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n2b9668-insurance1peer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICJjCCAcygAwIBAgIUQkkQLRvCgkjhxPGJFeGZoecpPV8wCgYIKoZIzj0EAwIw\nZzELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRgwFgYDVQQDEw9JbnN1cmFu\nY2VDQS10bHMwHhcNMTkwOTE5MTAzMzAwWhcNMzQwOTE1MTAzMzAwWjBnMQswCQYD\nVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExFDASBgNVBAoTC0h5cGVy\nbGVkZ2VyMQ8wDQYDVQQLEwZGYWJyaWMxGDAWBgNVBAMTD0luc3VyYW5jZUNBLXRs\nczBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABByMPtQs7D8I3iDm0/aARXMtXmOC\nl3OtBddXBLDgyo32SaRqKi6zl+aO7zZHdlwSELSXNJ2e5gEsgkWqeMfyf4+jVjBU\nMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEBMB0GA1UdDgQWBBRt\nOrDnCLUd72xIw1F1h/sG/gAqODAPBgNVHREECDAGhwQKXw0VMAoGCCqGSM49BAMC\nA0gAMEUCIQCJwgi95k6+g0qKva1O/Qlek7nJf4KebBnfamMuX6dxgAIgU3xgKCV9\nXC/SCg8of8LerXE9NcZ9YJxW8jlGGmZZ7oA=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n2b9668-insurance1peer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud"
+            }
+        },
+        "n2b9668-consortiumpeer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n2b9668-consortiumpeer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICMjCCAdigAwIBAgIUNBh9c3VioJ72IXbRBSxxc1RHJhEwCgYIKoZIzj0EAwIw\nbTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMR4wHAYDVQQDExVDb25zb3J0\naXVtQ0FBZG1pbi10bHMwHhcNMTkwOTE5MTAzMjAwWhcNMzQwOTE1MTAzMjAwWjBt\nMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExFDASBgNVBAoT\nC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZGYWJyaWMxHjAcBgNVBAMTFUNvbnNvcnRp\ndW1DQUFkbWluLXRsczBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABCnCxFsEuQiL\nc9KBn4ThT8QUa5i9IE9o4miRnKx1YmW7Fr2mMBWYsPCe65Q4EDBTgkbRzZRmcBdK\nqcSSIbykfhOjVjBUMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEB\nMB0GA1UdDgQWBBSqTBemNYVny/3iZuZqMtU2WEoAUTAPBgNVHREECDAGhwQKXw0V\nMAoGCCqGSM49BAMCA0gAMEUCIQCm+A2TeTnyYe4/SuaFb2k+iG+OKwnYbhPCpkFJ\nH+5KrwIgbWe/eGwg9hPFCitrKIwzLkWE4g0k7541cLoqkYv8L9w=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n2b9668-consortiumpeer.ajaablockchaink8cluster.us-south.containers.appdomain.cloud"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "n2b9668-consortiumcaadmin.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7054": {
+            "url": "https://n2b9668-consortiumcaadmin.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7054",
+            "caName": "ca",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\r\nMIIDWjCCAsOgAwIBAgIJKmsxG3zhBDzmMA0GCSqGSIb3DQEBBQUAMIG7MV4wXAYD\r\nVQQDE1VuMmI5NjY4LWNvbnNvcnRpdW1jYWFkbWluLmFqYWFibG9ja2NoYWluazhj\r\nbHVzdGVyLnVzLXNvdXRoLmNvbnRhaW5lcnMuYXBwZG9tYWluLmNsb3VkMQswCQYD\r\nVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVp\r\nZ2gxDDAKBgNVBAoTA0lCTTETMBEGA1UECxMKQmxvY2tjaGFpbjAeFw0xOTA5MTkx\r\nMDMzNDRaFw0yMDA5MTgxMDMzNDRaMIG7MV4wXAYDVQQDE1VuMmI5NjY4LWNvbnNv\r\ncnRpdW1jYWFkbWluLmFqYWFibG9ja2NoYWluazhjbHVzdGVyLnVzLXNvdXRoLmNv\r\nbnRhaW5lcnMuYXBwZG9tYWluLmNsb3VkMQswCQYDVQQGEwJVUzEXMBUGA1UECBMO\r\nTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxDDAKBgNVBAoTA0lCTTET\r\nMBEGA1UECxMKQmxvY2tjaGFpbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA\r\ni/V3xX1Y0U5ZozVhqKiMsrtCIpeAPskp9iQqOrZwufHcSsU984+ZThpstCf0nmgl\r\niHJSgONRcqrEQE+biyaL24eqmL67sBUS4my2ZA0N/GGj1lHhcMUmDkoPYFJdzO2X\r\no3JgguKE+ONKUpy7d80jDpuQkGkQzjRzZPGXjorCem8CAwEAAaNkMGIwYAYDVR0R\r\nBFkwV4JVbjJiOTY2OC1jb25zb3J0aXVtY2FhZG1pbi5hamFhYmxvY2tjaGFpbms4\r\nY2x1c3Rlci51cy1zb3V0aC5jb250YWluZXJzLmFwcGRvbWFpbi5jbG91ZDANBgkq\r\nhkiG9w0BAQUFAAOBgQAZNJBKwzvUKPFzIyqdSHNDrVRGAJ9N6SZ22CSWYsCZkxzM\r\no+uS4Hfq5mrPVmFYjWZHKBKFYC4Y3htUF0JdFzMF1IynLl+O0vYfXr/eQB+D/rUn\r\nCG/hY6m6CNQME4CP93g3bxV5hUe74IeWz+GqJOaGENGhk+v8/hgt9VFiZ3Vqyg==\r\n-----END CERTIFICATE-----\r\n"
+            }
+        }
+    }
+}
