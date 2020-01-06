@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 var cfenv = require('cfenv');
-var network = require('./network.js');
-const mockdataFunctions = require('./mockData');
+var network = require('./blockchainNetworkConnector.js/index.js.js');
+const mockdataFunctions = require('./utils/parseOffChainData');
 
 const app = express();
 app.use(morgan('combined'))

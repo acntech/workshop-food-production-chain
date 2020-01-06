@@ -18,7 +18,7 @@ const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
 
-exports.getVehicle = async function (objectID) {
+exports.getObject = async function (objectID) {
     try {
         var response = {};
 
