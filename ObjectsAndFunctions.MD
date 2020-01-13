@@ -4,6 +4,7 @@
     FoodID: String - Identifying the food. Can have additional information about food in a seperate file if possible.
     FarmID: String - Identifying where the mango was grown and harvested.
     BatchID: String - Identifying the batch of mango from Farm to Packaging house.
+    LotId: String - The lot where the fruit was harvested.
     DateOfHarvest: String - Date of when the fruit was harvested.
     
     PackagingHouseID: String - identifying which package house the batch was packaged.
