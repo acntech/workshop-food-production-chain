@@ -1,4 +1,5 @@
-### Object to be stored on the blockchain:
+### Object to be stored on the blockchain
+```
 {
     FoodID: String - Identifying the food. Can have additional information about food in a seperate file if possible.
     FarmID: String - Identifying where the mango was grown and harvested.
@@ -15,6 +16,7 @@
 	StoreID: String - Store identifier.
 	DateOfDelivery: String - Delivery date at store.
 }
+```
 
 ### Timeline
 1. Farm registers the fruit before it's sent to the packaging house. Information required is what type of food the items are (FoodId), the ID of the farm (FarmID), the batch id for the fruit (BatchID) and the date the fruit was harvested.
