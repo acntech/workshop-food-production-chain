@@ -62,9 +62,9 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 /registerBatch 
 { 
-	"batchID" : "BI1", 
+	"batchID" : "B1", 
 	"foodID": "1",
-	"farmID" : "1",
+	"farmID" : "F1",
 	"lotNo" : "1",
 	"dateOfHarvest" : "DDMMYYYY"
 }
@@ -73,7 +73,7 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 /registerPackage 
 { 
-	"packageID": "PI1",
+	"packageID": "P1",
 	"batchID" : "1"
 }
 ```
@@ -91,7 +91,7 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 /registerFromPackageHouseToDistributionCenter 
 { 
 	"packageID" : "PI1",
-	"distributionCenterID" : "DCI1",
+	"distributionCenterID" : "DC1",
 	"dateOfDistribution" : "DDMMYYYY"
 }
 ```
@@ -99,11 +99,23 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 /registerFromDistributionCenterToStore 
 { 
-	"packageID" : "PI1",
-	"storeID" : "SI11",
+	"packageID" : "P1",
+	"storeID" : "S11",
 	"dateOfDelivery" : "DDMMYYYY"
 }
 ```
+
+###
+GET
+```
+/getItem/ItemID  
+
+Returns following object:
+{"status":"success","result":{"batchID":"1","dateOfDelivery":"01022020","dateOfDistribution":"DCI1","distributionCenterID":"01022020","packageID":"PI1","storeID":"SI11"}}
+```
+
+If any route is failing, the following object will be returned.
+{"status":"error","message":"Error message"}
 
 ### Functions to be written for fetching off chain data
 ```

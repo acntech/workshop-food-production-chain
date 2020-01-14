@@ -49,13 +49,12 @@ exports.getItem = async function (itemID) {
         const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
-        await contract.submitTransaction('getItem', itemID);
+        const result = await contract.submitTransaction('getItem', itemID);
 
         console.log(`getItem(${itemID}) - Transaction has been submitted`);
         await gateway.disconnect();
 
-        response.msg = 'getItem Transaction has been submitted';
-        return response;
+        return result;
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);

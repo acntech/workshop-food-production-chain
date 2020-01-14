@@ -43,8 +43,8 @@ app.get('/getOffChainData/:dataID', (req, res) => {
 //GET ROUTES
 app.get('/getItem/:itemID', (req, res) => {
   network.getItem(req.params.itemID)
-    .then((res) => {
-        let object = JSON.parse(object[0]);
+    .then((response) => {
+        let object = JSON.parse(response);
         res.send(JSON.stringify({ status: 'success', result: object}));
     }).catch(err => res.send(JSON.stringify({ status: 'error', message: err })));
 });
@@ -76,7 +76,7 @@ app.post('/registerFoodFromFarmToPackageHouse', (req, res) => {
 });
 
 app.post('/registerFromPackageHouseToDistributionCenter', (req, res) => {
-  network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.dateOfDistribution, req.body.distributionCenterID)
+  network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.distributionCenterID, req.body.dateOfDistribution)
     .then((response) => {
         res.send(JSON.stringify({ status: 'registerFromPackageHouseToDistributionCenter - success', result: response }));
     }).catch(err =>

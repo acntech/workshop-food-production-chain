@@ -7,7 +7,7 @@
 const { Contract } = require('fabric-contract-api');
 
 class FoodContract extends Contract {
-
+    //TODO extract check if batch exist to own function
     async itemExists(ctx, itemID) {
         const buffer = await ctx.stub.getState(itemID);
         return (!!buffer && buffer.length > 0);
@@ -54,7 +54,7 @@ class FoodContract extends Contract {
     //Update asset
     async registerFoodFromFarmToPackageHouse(ctx, _batchID, _packagingHouseID, _dateOfPackaging) {
         let batch = await ctx.stub.getState(_batchID);
-        if (!batch || batch === 0) {
+        if (!batch || batch.length === 0) {
             throw new Error(`${_batchID} is not found.`);
         }
 
@@ -67,7 +67,7 @@ class FoodContract extends Contract {
 
     async registerFromPackageHouseToDistributionCenter(ctx, _packageID, _dateOfDistribution, _distributionCenterID) {
         let _package = await ctx.stub.getState(_packageID);
-        if (!_package || _package === 0) {
+        if (!_package || _package.length === 0) {
             throw new Error(`${_packageID} is not found.`);
         }
         _package = JSON.parse(_package.toString());
@@ -79,7 +79,7 @@ class FoodContract extends Contract {
 
     async registerFromDistributionCenterToStore(ctx, _packageID, _storeID, _dateOfDelivery) {
         let _package = await ctx.stub.getState(_packageID);
-        if (!_package || _package === 0) {
+        if (!_package || _package.length === 0) {
             throw new Error(`${_packageID} is not found.`);
         }
 
