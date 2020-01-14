@@ -1,15 +1,21 @@
 ### Object to be stored on the blockchain
 ```
+Two assets 
+Batch of mangos
 {
+    *KEY* BatchID: String starting with BI ex: BI13232 - Identifying the batch of mango from Farm to Packaging house.
     FoodID: String - Identifying the food. Can have additional information about food in a seperate file if possible.
     FarmID: String - Identifying where the mango was grown and harvested.
-    BatchID: String - Identifying the batch of mango from Farm to Packaging house.
     LotId: String - The lot where the fruit was harvested.
     DateOfHarvest: String - Date of when the fruit was harvested.
-    
     PackagingHouseID: String - identifying which package house the batch was packaged.
     DateOfPackaging: String - When package house receives the batch.
-    PackageID: String - Identifying a specific package.
+}
+
+Package of Mangos
+{
+    *KEY* PackageID: String starting with PI ex: PI12584 - Identifying a specific package.
+    BatchID : String staring with BI ex: BI121323 - Identifying which batch it came from.
     
     DistributionCenterID: String - Identifying which Distribution Center that distributed the batch.
     DateOfDistribution: String - Date and time when the distribituion center received the batch from packaging house.
@@ -33,14 +39,14 @@ registerBatch(FoodID, FarmID, BatchID, HarvestDate) : Registers the harvest date
 
 registerFoodFromFarmToPackageHouse(PackagingHouseID, DateOfPackaging) : Is called when the packaging house recieves the food. Registers the date and Package house on the blockchain.
 
-registerPackageID(PackageID, BatchID): Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
+registerPackageID(PackageID, BatchID) : Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
 
 registerFromPackageHouseToDistributionCenter(PackageID, DateOfDistribution, DistributionCenterID) : Is called when the distribution center receives the food from the packaging house. Registers the date and distribution center of the package on the blockchain.
 
 registerFromDistributionCenterToStore(StoreID, DateOfDelivery) : Is called when the store receives the packages from the distribution center. Registers the date sore of the package on the blockchain.
 
 getBatch(BatchID) : Retrieves information about the batch and all objects from the batch.
-getPackage(PackageID) : Retrieves all information from a specific batch.
+getPackage(PackageID) : Retrieves all information from a specific package.
 ```
 
 ### Functions to be written for fetching off chain data

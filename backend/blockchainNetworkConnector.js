@@ -49,7 +49,6 @@ exports.getObject = async function (objectID) {
         // Get the contract from the network.
         const contract = channel.getContract('contractName');
 
-        // Submit the specified transaction - proposeNewHolder(ctx, SSN, vehicleID)
         let transactionResult = await contract.submitTransaction('getObject', objectID);
 
         console.log('getObject - Transaction has been submitted');
