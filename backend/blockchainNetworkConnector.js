@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 // capture network variables from config.json
-const configPath = path.join(process.cwd(), './connectionProfiles/config.json');
+const configPath = path.join(process.cwd(), '/connectionProfiles/config.json');
 const configJSON = fs.readFileSync(configPath, 'utf8');
 const config = JSON.parse(configJSON);
 var connection_file = config.connection_file;
@@ -17,27 +17,21 @@ const ccpPath = path.join(process.cwd(), connection_file);
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
-doesIdentityExistInWallet = function(){
-    // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), '/wallet');
-    const wallet = new FileSystemWallet(walletPath);
-    console.log(`Wallet path: ${walletPath}`);
 
-    // Check to see if we've already enrolled the user.
-    const userExists = await wallet.exists(userName);
-
-    if (!userExists) {
-        console.log('An identity for the user ' + userName + ' does not exist in the wallet');
-        console.log('Run the registerUser.js application before retrying');
-        return false;
-    }
-    return true;
-}
-
+//TODO Export 26-37 to own function.
 exports.getItem = async function (itemID) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
@@ -52,14 +46,14 @@ exports.getItem = async function (itemID) {
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
         await contract.submitTransaction('getItem', itemID);
 
         console.log(`getItem(${itemID}) - Transaction has been submitted`);
         await gateway.disconnect();
-        
+
         response.msg = 'getItem Transaction has been submitted';
         return response;
 
@@ -75,11 +69,19 @@ exports.getItem = async function (itemID) {
 exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dateOfHarvest) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
-
         //Create a new gateway for connecting to our peer.
         const gateway = new Gateway();
 
@@ -90,7 +92,7 @@ exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dat
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
         await contract.submitTransaction('registerBatch', _batchID, _foodID, _farmID, _lotNo, _dateOfHarvest);
@@ -111,7 +113,16 @@ exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dat
 exports.registerPackage = async function (_packageID, _batchID) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
@@ -126,10 +137,10 @@ exports.registerPackage = async function (_packageID, _batchID) {
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
-         await contract.submitTransaction('registerPackage', _packageID, _batchID);
+        await contract.submitTransaction('registerPackage', _packageID, _batchID);
 
         console.log(`registerPackage(${_packageID}) - Transaction has been submitted`);
         await gateway.disconnect();
@@ -148,11 +159,19 @@ exports.registerPackage = async function (_packageID, _batchID) {
 exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagingHouseID, _dateOfPackaging) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
-
         //Create a new gateway for connecting to our peer.
         const gateway = new Gateway();
 
@@ -163,14 +182,14 @@ exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagin
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
         await contract.submitTransaction('registerFoodFromFarmToPackageHouse', _batchID, _packagingHouseID, _dateOfPackaging);
 
         console.log(`registerFoodFromFarmToPackageHouse(${_batchID}) - Transaction has been submitted`);
         await gateway.disconnect();
-        
+
         response.msg = 'registerFoodFromFarmToPackageHouse Transaction has been submitted';
         return response;
 
@@ -184,7 +203,16 @@ exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagin
 exports.registerFromPackageHouseToDistributionCenter = async function (_packageID, _dateOfDistribution, _distributionCenterID) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
@@ -199,7 +227,7 @@ exports.registerFromPackageHouseToDistributionCenter = async function (_packageI
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
         await contract.submitTransaction('registerFromPackageHouseToDistributionCenter', _packageID, _dateOfDistribution, _distributionCenterID);
@@ -220,7 +248,16 @@ exports.registerFromPackageHouseToDistributionCenter = async function (_packageI
 exports.registerFromDistributionCenterToStore = async function (_packageID, _storeID, _dateOfDelivery) {
     try {
         let response = {}
-        if(!doesIdentityExistInWallet()){
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), '/identityEnrollment/wallet');
+        const wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+
+        // Check to see if we've already enrolled the user.
+        const userExists = await wallet.exists(userName);
+
+        if (!userExists) {
+            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
@@ -235,7 +272,7 @@ exports.registerFromDistributionCenterToStore = async function (_packageID, _sto
         const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
+        const contract = channel.getContract('FoodContract');
 
         //Run the transaction.
         await contract.submitTransaction('registerFromDistributionCenterToStore', _packageID, _storeID, _dateOfDelivery);

@@ -28,12 +28,20 @@ Package of Mangos
 ### Timeline
 1. Farm registers the fruit before it's sent to the packaging house. Information required is what type of food the items are (FoodId), the ID of the farm (FarmID), the batch id for the fruit (BatchID) and the date the fruit was harvested.
 
-2. The packaging house recieves the food (DateOfPackaging) and seperates the food to seperate packaging which has a unique identifier (PackageID).
+2. The packaging house recieves the food and registers the date. This action uses the function registerFoodFromFarmToPackageHouse.
 
-3. The distribution center recieves the packaged food and registers the date (DateOfDistribution)
+3. The packaging house seperates the food to seperate packaging which has a unique identifier (PackageID). 
+This action uses the function registerPackage.
 
+4. The distribution center recieves the packaged food and registers the date (DateOfDistribution)
+This action uses the function registerFromPackageHouseToDistributionCenter.
 
-### Function to be written for blockchain
+5. The store receives the packaged food from the distributer and registers the date (DateOfDelivery)
+This action uses the function registerFromDistributionCenterToStore.
+
+6.  The user scans the package for the fruit in the store through the store's application. This action uses the function getItem.
+
+###  Functions in smart contract
 ```
 registerBatch(foodID, farmID, lotNo, batchID, harvestDate) : Registers the harvest date, the batch, what food the batch is and date of harvest on blockchain.
 
@@ -46,6 +54,31 @@ registerFromPackageHouseToDistributionCenter(packageID, dateOfDistribution, dist
 registerFromDistributionCenterToStore(packageID, storeID, dateOfDelivery) : Is called when the store receives the packages from the distribution center. Registers the date sore of the package on the blockchain.
 
 getItem(itemID) : Fetches item (batch or package object) form blockchain.
+```
+
+### Function in REST API
+
+### POST
+```
+/registerBatch 
+{ 
+	"batchID" : "1", 
+	"foodID": "1",
+	"farmID" : "1",
+	"lotNo" : "1",
+	"dateOfHarvest" : "01022020"
+}
+```
+
+```
+/registerBatch 
+{ 
+	"batchID" : "1", 
+	"foodID": "1",
+	"farmID" : "1",
+	"lotNo" : "1",
+	"dateOfHarvest" : "01022020"
+}
 ```
 
 ### Functions to be written for fetching off chain data

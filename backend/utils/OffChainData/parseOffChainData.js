@@ -1,4 +1,4 @@
-const object = require(`./utils/additionalData.json`);
+const object = require(`./additionalData.json`);
 const fs = require('fs');
 
 exports.getPerson = function(SSN) {

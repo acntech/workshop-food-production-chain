@@ -1,9 +1,9 @@
 {
-    "connection_file": "connection.json",
-    "appAdmin": "user1",
-    "appAdminSecret": "user1pw",
-    "orgMSPID": "consortiummsp",
-    "caName": "n2b9668-consortiumca0.ajaablockchaink8cluster.us-south.containers.appdomain.cloud:7054",
-    "userName": "user1",
+    "connection_file": "connectionProfiles/connection.json",
+    "appAdmin": "uiuser",
+    "appAdminSecret": "uiuserpw",
+    "orgMSPID": "ecostoremsp",
+    "caName": "173.193.75.235:30493",
+    "userName": "uiuser",
     "gatewayDiscovery": { "enabled": true, "asLocalhost": false }
 }

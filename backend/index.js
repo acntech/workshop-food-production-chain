@@ -50,7 +50,7 @@ app.get('/getItem/:itemID', (req, res) => {
 });
 
 app.post('/registerBatch', (req, res) => {
-  network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, req.body.foodID, dateOfHarvest)
+  network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, req.body.dateOfHarvest)
     .then((response) => {
         res.send(JSON.stringify({ status: 'registerBatch - success', result: response }));
     }).catch(err =>

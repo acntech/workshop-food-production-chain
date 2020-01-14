@@ -101,14 +101,6 @@ class FoodContract extends Contract {
         return asset;
     }
 
-    //Delete object from database
-    async deleteObject(ctx, itemID) {
-        const exists = await this.itemExists(ctx, itemID);
-        if (!exists) {
-            throw new Error(`The item ${itemID} does not exist`);
-        }
-        await ctx.stub.deleteState(itemID);
-    }
 }
 
 module.exports = FoodContract;
