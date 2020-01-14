@@ -36,25 +36,60 @@ app.get('/getOffChainData/:dataID', (req, res) => {
   }
 });
 
+
 /***********************/
 /*****  BLOCKCHAIN *****/
 
-//Retrieving all objects stored in channel and current states.
-app.get('/getAllObjects', (req, res) => {
-  network.getAllObjects()
-    .then((res) => {
-        let objects = JSON.parse(JSON.parse(res[0]));
-        res.send(JSON.stringify({ status: 'success', result: objects }));
-    }).catch(err => res.send(JSON.stringify({ status: 'error', message: err })));
-});
-
-//Fetch a specific object and it's current state. 
-app.get('/getObject/:objectID', (req, res) => {
-  network.getVehicle(req.params.objectID)
+//GET ROUTES
+app.get('/getItem/:itemID', (req, res) => {
+  network.getItem(req.params.itemID)
     .then((res) => {
         let object = JSON.parse(object[0]);
         res.send(JSON.stringify({ status: 'success', result: object}));
     }).catch(err => res.send(JSON.stringify({ status: 'error', message: err })));
 });
+
+app.post('/registerBatch', (req, res) => {
+  network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, req.body.foodID, dateOfHarvest)
+    .then((response) => {
+        res.send(JSON.stringify({ status: 'registerBatch - success', result: response }));
+    }).catch(err =>
+      res.send(JSON.stringify({ status: 'registerBatch - error', message: err })));
+});
+
+//POST ROUTES
+app.post('/registerPackage', (req, res) => {
+  network.registerPackage(req.body.batchID, req.body.packageID)
+    .then((response) => {
+        res.send(JSON.stringify({ status: 'registerPackage - success', result: response }));
+    }).catch(err =>
+      res.send(JSON.stringify({ status: 'registerPackage - error', message: err })));
+});
+
+
+app.post('/registerFoodFromFarmToPackageHouse', (req, res) => {
+  network.registerFoodFromFarmToPackageHouse(req.body.batchID, req.body.packagingHouseID, req.body.dateOfPackaging)
+    .then((response) => {
+        res.send(JSON.stringify({ status: 'registerFoodFromFarmToPackageHouse - success', result: response }));
+    }).catch(err =>
+      res.send(JSON.stringify({ status: 'registerFoodFromFarmToPackageHouse - error', message: err })));
+});
+
+app.post('/registerFromPackageHouseToDistributionCenter', (req, res) => {
+  network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.dateOfDistribution, req.body.distributionCenterID)
+    .then((response) => {
+        res.send(JSON.stringify({ status: 'registerFromPackageHouseToDistributionCenter - success', result: response }));
+    }).catch(err =>
+      res.send(JSON.stringify({ status: 'registerFromPackageHouseToDistributionCenter - error', message: err })));
+});
+
+app.post('/registerFromDistributionCenterToStore', (req, res) => {
+  network.registerFromDistributionCenterToStore(req.body.packageID, req.body.storeID, req.body.dateOfDelivery)
+    .then((response) => {
+        res.send(JSON.stringify({ status: 'registerFromDistributionCenterToStore - success', result: response }));
+    }).catch(err =>
+      res.send(JSON.stringify({ status: 'registerFromDistributionCenterToStore - error', message: err })));
+});
+
 
 module.exports = app;

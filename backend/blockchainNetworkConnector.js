@@ -71,41 +71,6 @@ exports.getItem = async function (itemID) {
 }
 
 
-exports.getItem = async function (itemID) {
-    try {
-        let response = {}
-        if(!doesIdentityExistInWallet()){
-            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
-            return response;
-        }
-
-        //Create a new gateway for connecting to our peer.
-        const gateway = new Gateway();
-
-        //Connect to peer
-        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-
-        //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
-
-        // Get the contract from the network.
-        const contract = channel.getContract('food-contract');
-
-        //Run the transaction.
-        await contract.submitTransaction('getItem', itemID);
-
-        console.log(`getItem(${itemID}) - Transaction has been submitted`);
-        await gateway.disconnect();
-        
-        response.msg = 'getItem Transaction has been submitted';
-        return response;
-
-    } catch (error) {
-        console.error(`Failed to evaluate transactionin getItem: ${error}`);
-        response.error = error.message;
-        return response;
-    }
-}
 
 exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dateOfHarvest) {
     try {
