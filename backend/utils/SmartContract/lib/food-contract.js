@@ -66,29 +66,28 @@ class FoodContract extends Contract {
     }
 
     async registerFromPackageHouseToDistributionCenter(ctx, _packageID, _dateOfDistribution, _distributionCenterID) {
-        let package = await this.itemExists(ctx, _packageID);
-        if (!package) {
+        let _package = await this.itemExists(ctx, _packageID);
+        if (!_package) {
             throw new Error(`The package ${_packageID} does not exist`);
         }
+        _package = JSON.parse(_package.toString());
+        _package.distributionCenterID = _dateOfDistribution;
+        _package.dateOfDistribution = _distributionCenterID
 
-        package = JSON.parse(package.toString());
-        package.distributionCenterID = _dateOfDistribution;
-        package.dateOfDistribution = _distributionCenterID
-
-        await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(package)));
+        await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(_package)));
     }
 
     async registerFromDistributionCenterToStore(ctx, _packageID, _storeID, _dateOfDelivery) {
-        let package = await this.itemExists(ctx, _packageID);
-        if (!package) {
+        let _package = await this.itemExists(ctx, _packageID);
+        if (!_package) {
             throw new Error(`The package ${_packageID} does not exist`);
         }
 
-        package = JSON.parse(package.toString());
-        package.storeID = _storeID;
-        package.dateOfDelivery = _dateOfDelivery
+        _package = JSON.parse(_package.toString());
+        _package.storeID = _storeID;
+        _package.dateOfDelivery = _dateOfDelivery
 
-        await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(package)));
+        await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(_package)));
     }
 
     //Fetch Object from database
