@@ -13,12 +13,19 @@ class FoodContract extends Contract {
         return (!!buffer && buffer.length > 0);
     }
 
-    async createBatch(ctx, foodId, value) {
-        const exists = await this.itemExists(ctx, itemID);
+    async registerBatch(ctx, batchID, foodID, farmID, lotNo, harvestDate) {
+        const exists = await this.itemExists(ctx, batchID);
         if (exists) {
-            throw new Error(`The food ${foodId} already exists`);
+            throw new Error(`The batch ${batchID} already exists`);
         }
-        const asset = { value };
+
+        const asset = {
+            BatchID : batchID,
+            FoodID : foodID,
+            FarmID : farmID,
+            LotNo : lotNo,
+            HarvestDate : harvestDate
+         };
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(foodId, buffer);
     }
