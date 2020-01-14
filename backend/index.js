@@ -59,7 +59,7 @@ app.post('/registerBatch', (req, res) => {
 
 //POST ROUTES
 app.post('/registerPackage', (req, res) => {
-  network.registerPackage(req.body.batchID, req.body.packageID)
+  network.registerPackage(req.body.packageID, req.body.batchID)
     .then((response) => {
         res.send(JSON.stringify({ status: 'registerPackage - success', result: response }));
     }).catch(err =>

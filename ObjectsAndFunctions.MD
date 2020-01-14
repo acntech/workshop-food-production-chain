@@ -62,22 +62,46 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 /registerBatch 
 { 
-	"batchID" : "1", 
+	"batchID" : "BI1", 
 	"foodID": "1",
 	"farmID" : "1",
 	"lotNo" : "1",
-	"dateOfHarvest" : "01022020"
+	"dateOfHarvest" : "DDMMYYYY"
 }
 ```
 
 ```
-/registerBatch 
+/registerPackage 
 { 
-	"batchID" : "1", 
-	"foodID": "1",
-	"farmID" : "1",
-	"lotNo" : "1",
-	"dateOfHarvest" : "01022020"
+	"packageID": "PI1",
+	"batchID" : "1"
+}
+```
+
+```
+/registerFoodFromFarmToPackageHouse 
+{ 
+	"batchID" : "1",
+	"packagingHouseID" : "PH1",
+	"dateOfPackaging" : "DDMMYYYY"
+}
+```
+
+```
+/registerFromPackageHouseToDistributionCenter 
+{ 
+	"packageID" : "PI1",
+	"distributionCenterID" : "DCI1",
+	"dateOfDistribution" : "DDMMYYYY"
+}
+```
+
+```
+/registerFromDistributionCenterToStore 
+{ 
+	"packageID" : "PI1",
+	"storeID" : "SI11",
+	"dateOfDelivery" : "DDMMYYYY"
 }
 ```
 
