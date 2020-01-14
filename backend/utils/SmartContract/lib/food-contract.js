@@ -8,13 +8,13 @@ const { Contract } = require('fabric-contract-api');
 
 class FoodContract extends Contract {
 
-    async foodExists(ctx, foodId) {
-        const buffer = await ctx.stub.getState(foodId);
+    async itemExists(ctx, itemID) {
+        const buffer = await ctx.stub.getState(itemID);
         return (!!buffer && buffer.length > 0);
     }
 
-    async createFood(ctx, foodId, value) {
-        const exists = await this.foodExists(ctx, foodId);
+    async createBatch(ctx, foodId, value) {
+        const exists = await this.itemExists(ctx, itemID);
         if (exists) {
             throw new Error(`The food ${foodId} already exists`);
         }
@@ -24,7 +24,7 @@ class FoodContract extends Contract {
     }
 
     async readFood(ctx, foodId) {
-        const exists = await this.foodExists(ctx, foodId);
+        const exists = await this.itemExists(ctx, foodId);
         if (!exists) {
             throw new Error(`The food ${foodId} does not exist`);
         }
@@ -34,7 +34,7 @@ class FoodContract extends Contract {
     }
 
     async updateFood(ctx, foodId, newValue) {
-        const exists = await this.foodExists(ctx, foodId);
+        const exists = await this.itemExists(ctx, foodId);
         if (!exists) {
             throw new Error(`The food ${foodId} does not exist`);
         }
@@ -44,7 +44,7 @@ class FoodContract extends Contract {
     }
 
     async deleteFood(ctx, foodId) {
-        const exists = await this.foodExists(ctx, foodId);
+        const exists = await this.itemExists(ctx, foodId);
         if (!exists) {
             throw new Error(`The food ${foodId} does not exist`);
         }

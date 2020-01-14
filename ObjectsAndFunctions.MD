@@ -6,7 +6,7 @@ Batch of mangos
     *KEY* BatchID: String starting with BI ex: BI13232 - Identifying the batch of mango from Farm to Packaging house.
     FoodID: String - Identifying the food. Can have additional information about food in a seperate file if possible.
     FarmID: String - Identifying where the mango was grown and harvested.
-    LotId: String - The lot where the fruit was harvested.
+    LotNo: String - The lot where the fruit was harvested.
     DateOfHarvest: String - Date of when the fruit was harvested.
     PackagingHouseID: String - identifying which package house the batch was packaged.
     DateOfPackaging: String - When package house receives the batch.
@@ -35,7 +35,7 @@ Package of Mangos
 
 ### Function to be written for blockchain
 ```
-registerBatch(FoodID, FarmID, BatchID, HarvestDate) : Registers the harvest date, the batch, what food the batch is and date of harvest on blockchain.
+registerBatch(FoodID, FarmID, LotNo, BatchID, HarvestDate) : Registers the harvest date, the batch, what food the batch is and date of harvest on blockchain.
 
 registerFoodFromFarmToPackageHouse(PackagingHouseID, DateOfPackaging) : Is called when the packaging house recieves the food. Registers the date and Package house on the blockchain.
 
