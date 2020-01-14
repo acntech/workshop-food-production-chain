@@ -49,7 +49,7 @@ exports.getItem = async function (itemID) {
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
@@ -87,7 +87,7 @@ exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dat
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
@@ -123,7 +123,7 @@ exports.registerPackage = async function (_packageID, _batchID) {
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
@@ -160,7 +160,7 @@ exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagin
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
@@ -196,7 +196,7 @@ exports.registerFromPackageHouseToDistributionCenter = async function (_packageI
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
@@ -232,7 +232,7 @@ exports.registerFromDistributionCenterToStore = async function (_packageID, _sto
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('SupplyChainChannel');
+        const channel = await gateway.getNetwork('supplychainchannel');
 
         // Get the contract from the network.
         const contract = channel.getContract('food-contract');
