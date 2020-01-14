@@ -17,44 +17,48 @@ const ccpPath = path.join(process.cwd(), connection_file);
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
+doesIdentityExistInWallet = function(){
+    // Create a new file system based wallet for managing identities.
+    const walletPath = path.join(process.cwd(), '/wallet');
+    const wallet = new FileSystemWallet(walletPath);
+    console.log(`Wallet path: ${walletPath}`);
 
-exports.getObject = async function (objectID) {
+    // Check to see if we've already enrolled the user.
+    const userExists = await wallet.exists(userName);
+
+    if (!userExists) {
+        console.log('An identity for the user ' + userName + ' does not exist in the wallet');
+        console.log('Run the registerUser.js application before retrying');
+        return false;
+    }
+    return true;
+}
+
+exports.getItem = async function (itemID) {
     try {
-        var response = {};
-
-        // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '/wallet');
-        const wallet = new FileSystemWallet(walletPath);
-        console.log(`Wallet path: ${walletPath}`);
-
-        // Check to see if we've already enrolled the user.
-        const userExists = await wallet.exists(userName);
-
-        if (!userExists) {
-            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
-            console.log('Run the registerUser.js application before retrying');
+        let response = {}
+        if(!doesIdentityExistInWallet()){
             response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
             return response;
         }
 
-     // Create a new gateway for connecting to our peer.
+        //Create a new gateway for connecting to our peer.
         const gateway = new Gateway();
 
         //Connect to peer
         await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
 
         //Get channel
-        const channel = await gateway.getNetwork('channelName');
+        const channel = await gateway.getNetwork('SupplyChainChannel');
 
         // Get the contract from the network.
-        const contract = channel.getContract('contractName');
+        const contract = channel.getContract('food-contract');
 
-        let transactionResult = await contract.submitTransaction('getObject', objectID);
+        //Run the transaction.
+        let transactionResult = await contract.submitTransaction('getItem', itemID);
 
-        console.log('getObject - Transaction has been submitted');
-
+        console.log(`getItem(${itemID}) - Transaction has been submitted`);
         await gateway.disconnect();
-
         return [transactionResult];
 
     } catch (error) {
@@ -64,50 +68,5 @@ exports.getObject = async function (objectID) {
     }
 }
 
-exports.getAllObjects = async function () {
-    try {
-        var response = {};
 
-        // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), '/wallet');
-        const wallet = new FileSystemWallet(walletPath);
-        console.log(`Wallet path: ${walletPath}`);
 
-        // Check to see if we've already enrolled the user.
-        const userExists = await wallet.exists(userName);
-
-        if (!userExists) {
-            console.log('An identity for the user ' + userName + ' does not exist in the wallet');
-            console.log('Run the registerUser.js application before retrying');
-            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
-            return response;
-        }
-
-        // Create a new gateway for connecting to our peer.
-        const gateway = new Gateway();
-
-        //Connect to peer
-        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-
-        // Get the network (channel) our contract is deployed to.
-        const channel = await gateway.getNetwork('channelName');
-
-        // Get the contract from the network.
-        const contract = channel.getContract('contractName');
-
-        // Evaluate the specified transaction.
-        const transactionResult = await contract.evaluateTransaction('getAllObjects');
-
-        console.log('getAllObjects - Transaction has been submitted');
-
-        // Disconnect from the gateway.
-        gateway.disconnect();
-
-        return [transactionResult];
-
-    } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
-        response.error = error.message;
-        return response;
-    }
-}

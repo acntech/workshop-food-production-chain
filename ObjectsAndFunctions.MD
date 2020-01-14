@@ -35,18 +35,17 @@ Package of Mangos
 
 ### Function to be written for blockchain
 ```
-registerBatch(FoodID, FarmID, LotNo, BatchID, HarvestDate) : Registers the harvest date, the batch, what food the batch is and date of harvest on blockchain.
+registerBatch(foodID, farmID, lotNo, batchID, harvestDate) : Registers the harvest date, the batch, what food the batch is and date of harvest on blockchain.
 
-registerFoodFromFarmToPackageHouse(PackagingHouseID, DateOfPackaging) : Is called when the packaging house recieves the food. Registers the date and Package house on the blockchain.
+registerFoodFromFarmToPackageHouse(batchID, packagingHouseID, dateOfPackaging) : Is called when the packaging house recieves the food. Registers the date and Package house on the blockchain.
 
-registerPackage(PackageID, BatchID) : Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
+registerPackage(packageID, batchID) : Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
 
-registerFromPackageHouseToDistributionCenter(PackageID, DateOfDistribution, DistributionCenterID) : Is called when the distribution center receives the food from the packaging house. Registers the date and distribution center of the package on the blockchain.
+registerFromPackageHouseToDistributionCenter(packageID, dateOfDistribution, distributionCenterID) : Is called when the distribution center receives the food from the packaging house. Registers the date and distribution center of the package on the blockchain.
 
-registerFromDistributionCenterToStore(StoreID, DateOfDelivery) : Is called when the store receives the packages from the distribution center. Registers the date sore of the package on the blockchain.
+registerFromDistributionCenterToStore(packageID, storeID, dateOfDelivery) : Is called when the store receives the packages from the distribution center. Registers the date sore of the package on the blockchain.
 
-getBatch(BatchID) : Retrieves information about the batch and all objects from the batch.
-getPackage(PackageID) : Retrieves all information from a specific package.
+getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 
 ### Functions to be written for fetching off chain data
