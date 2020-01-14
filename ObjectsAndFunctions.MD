@@ -39,7 +39,7 @@ registerBatch(FoodID, FarmID, LotNo, BatchID, HarvestDate) : Registers the harve
 
 registerFoodFromFarmToPackageHouse(PackagingHouseID, DateOfPackaging) : Is called when the packaging house recieves the food. Registers the date and Package house on the blockchain.
 
-registerPackageID(PackageID, BatchID) : Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
+registerPackage(PackageID, BatchID) : Fetches information about the BatchID, adds this information to a new blockchain object with the packageID.
 
 registerFromPackageHouseToDistributionCenter(PackageID, DateOfDistribution, DistributionCenterID) : Is called when the distribution center receives the food from the packaging house. Registers the date and distribution center of the package on the blockchain.
 
