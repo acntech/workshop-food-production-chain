@@ -14,7 +14,7 @@ class FoodContract extends Contract {
     }
 
     //Create assets
-    async registerBatch(ctx, _batchID, _boodID, _farmID, _lotNo, _dateOfHarvest) {
+    async registerBatch(ctx, _batchID, _foodID, _farmID, _lotNo, _dateOfHarvest) {
         const exists = await this.itemExists(ctx, _batchID);
         if (exists) {
             throw new Error(`The batch ${_batchID} already exists`);

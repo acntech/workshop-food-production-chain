@@ -55,11 +55,13 @@ exports.getItem = async function (itemID) {
         const contract = channel.getContract('food-contract');
 
         //Run the transaction.
-        let transactionResult = await contract.submitTransaction('getItem', itemID);
+        await contract.submitTransaction('getItem', itemID);
 
         console.log(`getItem(${itemID}) - Transaction has been submitted`);
         await gateway.disconnect();
-        return [transactionResult];
+        
+        response.msg = 'getItem Transaction has been submitted';
+        return response;
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
@@ -69,4 +71,219 @@ exports.getItem = async function (itemID) {
 }
 
 
+exports.getItem = async function (itemID) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
 
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+        await contract.submitTransaction('getItem', itemID);
+
+        console.log(`getItem(${itemID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+        
+        response.msg = 'getItem Transaction has been submitted';
+        return response;
+
+    } catch (error) {
+        console.error(`Failed to evaluate transactionin getItem: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
+
+exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dateOfHarvest) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
+
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+        await contract.submitTransaction('registerBatch', _batchID, _foodID, _farmID, _lotNo, _dateOfHarvest);
+
+        console.log(`registerBatch(${_batchID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+
+        response.msg = 'registerBatch Transaction has been submitted';
+        return response;
+
+    } catch (error) {
+        console.error(`Failed to evaluate transaction in registerBatch: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
+
+exports.registerPackage = async function (_packageID, _batchID) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
+
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+         await contract.submitTransaction('registerPackage', _packageID, _batchID);
+
+        console.log(`registerPackage(${_packageID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+
+        response.msg = 'registerPackage Transaction has been submitted';
+        return response;
+
+
+    } catch (error) {
+        console.error(`Failed to evaluate transaction in registerPackage: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
+
+exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagingHouseID, _dateOfPackaging) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
+
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+        await contract.submitTransaction('registerFoodFromFarmToPackageHouse', _batchID, _packagingHouseID, _dateOfPackaging);
+
+        console.log(`registerFoodFromFarmToPackageHouse(${_batchID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+        
+        response.msg = 'registerFoodFromFarmToPackageHouse Transaction has been submitted';
+        return response;
+
+    } catch (error) {
+        console.error(`Failed to evaluate transaction in registerFoodFromFarmToPackageHouse: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
+
+exports.registerFromPackageHouseToDistributionCenter = async function (_packageID, _dateOfDistribution, _distributionCenterID) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
+
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+        await contract.submitTransaction('registerFromPackageHouseToDistributionCenter', _packageID, _dateOfDistribution, _distributionCenterID);
+
+        console.log(`registerFromPackageHouseToDistributionCenter(${_packageID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+
+        response.msg = 'registerFromPackageHouseToDistributionCenter Transaction has been submitted';
+        return response;
+
+    } catch (error) {
+        console.error(`Failed to evaluate transaction in registerFromPackageHouseToDistributionCenter: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
+
+exports.registerFromDistributionCenterToStore = async function (_packageID, _storeID, _dateOfDelivery) {
+    try {
+        let response = {}
+        if(!doesIdentityExistInWallet()){
+            response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
+            return response;
+        }
+
+        //Create a new gateway for connecting to our peer.
+        const gateway = new Gateway();
+
+        //Connect to peer
+        await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+
+        //Get channel
+        const channel = await gateway.getNetwork('SupplyChainChannel');
+
+        // Get the contract from the network.
+        const contract = channel.getContract('food-contract');
+
+        //Run the transaction.
+        await contract.submitTransaction('registerFromDistributionCenterToStore', _packageID, _storeID, _dateOfDelivery);
+
+        console.log(`registerFromDistributionCenterToStore(${_packageID}) - Transaction has been submitted`);
+        await gateway.disconnect();
+
+        response.msg = 'registerFromDistributionCenterToStore Transaction has been submitted';
+        return response;
+
+    } catch (error) {
+        console.error(`Failed to evaluate transaction in registerFromDistributionCenterToStore: ${error}`);
+        response.error = error.message;
+        return response;
+    }
+}
