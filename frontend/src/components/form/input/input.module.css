@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  margin-top: 0.5em;
+}
+
+.label {
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.error,
+.input:invalid ~ .label { 
+  color: #dd2a2a;
+}
+
+.input:invalid ~ .label:after { 
+  content: '*';
+}
+
+.error {
+  display: none;
+}
+
+.input:invalid ~ .error { 
+  display: block;
+}
+
+.input:disabled,
+.input:disabled ~ .label { 
+  opacity: 0.75;
+}
+
+.input {
+  font-size: 1em;
+  display: block;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  border-color: #282c34;
+  background-color: #fefefe;
+  color: #282c34;
+}
+
+.input[type=submit] {
+  background-color: #cf2020;
+  color: white;
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input {
+    border-color: #ababab;
+    background-color: #5a5a5a;
+    color: white;
+  }
+}

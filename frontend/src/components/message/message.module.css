@@ -1,0 +1,22 @@
+.message {
+  padding: 0.5em;
+  border-radius: 0.25em;
+}
+
+.message h1 {
+  font-weight: bold;
+}
+
+.message p {
+  font-size: 0.8em;
+}
+
+.success {
+  background-color: #C6DEA6;
+  color: #698F3F;
+}
+
+.error {
+  background-color: #EB9486;
+  color: #DB504A;
+}
