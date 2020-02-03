@@ -27,8 +27,8 @@ var server = app.listen(port, '0.0.0.0', function () {
 
 /***********************/
 /*****  MOCK DATA *****/
-app.get('/getOffChainData/:dataID', (req, res) => {
-  var data = mockdataFunctions.getPerson(req.params.dataID);
+app.get('/getInformationAboutFruit/:fruitID', (req, res) => {
+  var data = mockdataFunctions.getFruit(req.params.fruitID);
   if (data) {
     res.send(JSON.stringify({ status: 'success', result: data }));
   } else {

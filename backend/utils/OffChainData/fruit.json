@@ -1,0 +1,14 @@
+[
+    {
+        "fruitID": "1",
+        "image": "path",
+        "name": "Banan",
+        "description": "Banana Lorem Ipsum"
+    },
+    {
+        "fruitID": "2",
+        "image": "path",
+        "name": "Mango",
+        "description": "Mango Lorem Ipsum"
+    }
+ ]
