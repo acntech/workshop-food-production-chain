@@ -12,8 +12,8 @@
  async function main() {
    try {
 
-   // Create a new CA client for interacting with the CA.
-   const caURL = ccp.certificateAuthorities['173.193.75.235:30493'].url;
+   // Create a new CA client for interacting with the CA. Add the IP to the CA below.
+   const caURL = ccp.certificateAuthorities['IP TO CA'].url;
    const ca = new FabricCAServices(caURL);
 
    // Create a new file system based wallet for managing identities.
@@ -22,16 +22,16 @@
    console.log(`Wallet path: ${walletPath}`);
 
    // Check to see if we've already enrolled the admin user.
-   const userExists = await wallet.exists('user1');
+   const userExists = await wallet.exists('ADD USERNAME');
    if (userExists) {
      console.log('An identity for "uiuser" already exists in the wallet');
      return;
    }
 
    // Enroll the admin user, and import the new identity into the wallet.
-   const enrollment = await ca.enroll({ enrollmentID: 'uiuser', enrollmentSecret: 'uiuserpw' });
-   const identity = X509WalletMixin.createIdentity('ecostoremsp', enrollment.certificate, enrollment.key.toBytes());
-   await wallet.import('uiuser', identity);
+   const enrollment = await ca.enroll({ enrollmentID: 'APP ENROLL ID', enrollmentSecret: 'APP ENROLL SECRET' });
+   const identity = X509WalletMixin.createIdentity('ADD MSP ID', enrollment.certificate, enrollment.key.toBytes());
+   await wallet.import('ADD USERNAME', identity);
    console.log('Successfully enrolled client "uiuser" and imported it into the wallet');
 
    } catch (error) {
