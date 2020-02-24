@@ -74,14 +74,14 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 /registerPackage 
 { 
 	"packageID": "P1",
-	"batchID" : "1"
+	"batchID" : "B1"
 }
 ```
 
 ```
 /registerFoodFromFarmToPackageHouse 
 { 
-	"batchID" : "1",
+	"batchID" : "B1",
 	"packagingHouseID" : "PH1",
 	"dateOfPackaging" : "DDMMYYYY"
 }
@@ -90,7 +90,7 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 ```
 /registerFromPackageHouseToDistributionCenter 
 { 
-	"packageID" : "PI1",
+	"packageID" : "P1",
 	"distributionCenterID" : "DC1",
 	"dateOfDistribution" : "DDMMYYYY"
 }
@@ -100,7 +100,7 @@ getItem(itemID) : Fetches item (batch or package object) form blockchain.
 /registerFromDistributionCenterToStore 
 { 
 	"packageID" : "P1",
-	"storeID" : "S11",
+	"storeID" : "S1",
 	"dateOfDelivery" : "DDMMYYYY"
 }
 ```
