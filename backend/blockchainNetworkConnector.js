@@ -186,7 +186,7 @@ async function doesUserExists() {
 
     if (!userExists) {
         console.log('An identity for the user ' + userName + ' does not exist in the wallet');
-        return false;
+       throw Error("User identity doesn't exist. Please run node enrollAdmin.js in identityEnrollment to fetch certificates.")
     } else {
         //return with wallet if the user exists
         return { 'wallet': wallet, 'userExist': true };

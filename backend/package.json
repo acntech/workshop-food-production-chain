@@ -20,8 +20,8 @@
     "body-parser": "^1.18.3",
     "cfenv": "^1.2.2",
     "express": "^4.16.4",
-    "fabric-ca-client": "1.4.5",
-    "fabric-network": "1.4.5",
+    "fabric-ca-client": "1.4.1",
+    "fabric-network": "1.4.1",
     "morgan": "^1.9.1"
   }
 }
