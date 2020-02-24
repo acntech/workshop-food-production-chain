@@ -12,10 +12,6 @@ app.use(bodyParser.json())
 var appEnv = cfenv.getAppEnv();
 var port = appEnv.port;
 
-
-/********************/
-/*****  ROUTES *****/
-/********************/
 app.get('/', function (req, res) {
   res.send({ greeting: 'Server up and running.'})
 });
