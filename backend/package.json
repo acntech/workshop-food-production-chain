@@ -1,5 +1,5 @@
 {
-  "name": "ajaa-fst-blockchain-backend_osl",
+  "name": "blockchain_workshop_accenture",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.ng.bluemix.net:Cloud-studio/Prototypes/ajaa-fst_osl/ajaa-fst-blockchain-backend_osl.git"
+    "url": ""
   },
   "author": "",
   "license": "ISC",

@@ -21,7 +21,6 @@ var server = app.listen(port, '0.0.0.0', function () {
 });
 
 
-/***********************/
 /*****  MOCK DATA *****/
 app.get('/getOffChainData/:dataID', (req, res) => {
   var data = mockdataFunctions.getPerson(req.params.dataID);
@@ -33,9 +32,7 @@ app.get('/getOffChainData/:dataID', (req, res) => {
 });
 
 
-/***********************/
 /*****  BLOCKCHAIN *****/
-
 //GET ROUTES
 app.get('/getItem/:itemID', (req, res) => {
   network.getItem(req.params.itemID)
