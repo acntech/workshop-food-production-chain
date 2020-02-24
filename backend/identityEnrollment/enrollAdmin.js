@@ -17,14 +17,14 @@
    const ca = new FabricCAServices(caURL);
 
    // Create a new file system based wallet for managing identities.
-   const walletPath = path.join(process.cwd(), 'wallet');
+   const walletPath = path.join(process.cwd(), '/wallet');
    const wallet = new FileSystemWallet(walletPath);
    console.log(`Wallet path: ${walletPath}`);
 
    // Check to see if we've already enrolled the admin user.
    const userExists = await wallet.exists('ecostore-uiuser');
    if (userExists) {
-     console.log('An identity for "uiuser" already exists in the wallet');
+     console.log('An identity for the user already exists in the wallet');
      return;
    }
 
@@ -32,10 +32,10 @@
    const enrollment = await ca.enroll({ enrollmentID: 'ecostore-uiuser', enrollmentSecret: 'ecostore-uiuserpw' });
    const identity = X509WalletMixin.createIdentity('ecostoremsp', enrollment.certificate, enrollment.key.toBytes());
    await wallet.import('ecostore-uiuser', identity);
-   console.log('Successfully enrolled client "uiuser" and imported it into the wallet');
+   console.log('Successfully enrolled user and imported it into the wallet');
 
    } catch (error) {
-     console.error(`Failed to enroll "uiadmin": ${error}`);
+     console.error(`Failed to enroll user: ${error}`);
      process.exit(1);
    }
  }
