@@ -58,8 +58,7 @@ exports.getItem = async function (itemID) {
 
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        response.error = error.message;
-        return response;
+        throw Error(error)
     }
 }
 
@@ -103,9 +102,8 @@ exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dat
         return response;
 
     } catch (error) {
-        console.error(`Failed to evaluate transaction in registerBatch: ${error}`);
-        response.error = error.message;
-        return response;
+        console.error(`Failed to evaluate transaction in registerPackage: ${error}`);
+        throw Error(error)
     }
 }
 
@@ -150,8 +148,7 @@ exports.registerPackage = async function (_packageID, _batchID) {
 
     } catch (error) {
         console.error(`Failed to evaluate transaction in registerPackage: ${error}`);
-        response.error = error.message;
-        return response;
+        throw Error(error)
     }
 }
 
@@ -194,8 +191,7 @@ exports.registerFoodFromFarmToPackageHouse = async function (_batchID, _packagin
 
     } catch (error) {
         console.error(`Failed to evaluate transaction in registerFoodFromFarmToPackageHouse: ${error}`);
-        response.error = error.message;
-        return response;
+        throw Error(error)
     }
 }
 
@@ -239,8 +235,7 @@ exports.registerFromPackageHouseToDistributionCenter = async function (_packageI
 
     } catch (error) {
         console.error(`Failed to evaluate transaction in registerFromPackageHouseToDistributionCenter: ${error}`);
-        response.error = error.message;
-        return response;
+        throw Error(error)
     }
 }
 
@@ -284,7 +279,6 @@ exports.registerFromDistributionCenterToStore = async function (_packageID, _sto
 
     } catch (error) {
         console.error(`Failed to evaluate transaction in registerFromDistributionCenterToStore: ${error}`);
-        response.error = error.message;
-        return response;
+        throw Error(error)
     }
 }
