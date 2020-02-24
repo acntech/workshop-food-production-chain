@@ -62,7 +62,6 @@ app.post('/registerPackage', (req, res) => {
       res.send(JSON.stringify({ status: 'registerPackage - error', message: err })));
 });
 
-
 app.post('/registerFoodFromFarmToPackageHouse', (req, res) => {
   network.registerFoodFromFarmToPackageHouse(req.body.batchID, req.body.packagingHouseID, req.body.dateOfPackaging)
     .then((response) => {
