@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #282c34;
+}
+
+.container h1,h2,h3,p {
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    color: white;
+  }
+}

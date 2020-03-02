@@ -1,0 +1,24 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 
+    7px 7px 15px rgba(55, 84, 170, 0.35),
+    -7px -7px 20px rgba(255, 255, 255,1),
+    inset 0px 0px 4px rgba(128, 125, 125, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 
+      7px 7px 15px rgba(5, 5, 5, 0.35),
+      -7px -7px 20px rgb(19, 18, 18),
+      inset 0px 0px 4px rgba(116, 112, 112, 0.2);
+  }
+}

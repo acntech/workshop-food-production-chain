@@ -1,0 +1,48 @@
+.background {
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(53, 51, 51);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: 
+    7px 7px 15px rgba(55, 84, 170, 0.35),
+    -7px -7px 20px rgba(255, 255, 255,1),
+    inset 0px 0px 4px rgba(128, 125, 125, 0.2);
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  
+  padding-top: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .background {
+    background-color: #282c34;
+    color: rgb(214, 202, 202);
+  }
+
+  .card {
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 
+      7px 7px 15px rgba(33, 36, 44, 0.35),
+      -7px -7px 20px rgb(19, 18, 18),
+      inset 0px 0px 4px rgba(116, 112, 112, 0.2);
+  }
+}

@@ -1,9 +1,9 @@
 {
     "connection_file": "connectionProfiles/connection.json",
-    "appAdmin": "ecostore-uiuser",
-    "appAdminSecret": "ecostore-uiuserpw",
-    "orgMSPID": "ecostoremsp",
-    "caName": "184.173.5.139:30763",
-    "userName": "ecostore-uiuser",
+    "appAdmin": "fruitfarm-uiuser",
+    "appAdminSecret": "fruitfarm-uiuserpw",
+    "orgMSPID": "fruitfarmmsp",
+    "caName": "173.193.99.186:30705",
+    "userName": "fruitfarm-uiuser",
     "gatewayDiscovery": { "enabled": true, "asLocalhost": false }
 }
