@@ -25,9 +25,8 @@ class FoodContract extends Contract {
             farmID : _farmID,
             lotNo : _lotNo,
             dateOfHarvest : _dateOfHarvest,
-            packagingHouseID : "",
-            dateOfPackaging : ""
-         };
+            packagingHouseID : '',
+            dateOfPackaging : ''};
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(_batchID, buffer);
     }
@@ -41,11 +40,10 @@ class FoodContract extends Contract {
         const asset = {
             packageID : _packageID,
             batchID : _batchID,
-            distributionCenterID : "",
-            dateOfDistribution : "",
-            storeID : "",
-            dateOfDelivery : ""
-         };
+            distributionCenterID : '',
+            dateOfDistribution : '',
+            storeID : '',
+            dateOfDelivery : ''};
 
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(_packageID, buffer);
@@ -60,7 +58,7 @@ class FoodContract extends Contract {
 
         batch = JSON.parse(batch.toString());
         batch.packagingHouseID = _packagingHouseID;
-        batch.dateOfPackaging = _dateOfPackaging
+        batch.dateOfPackaging = _dateOfPackaging;
 
         await ctx.stub.putState(_batchID, Buffer.from(JSON.stringify(batch)));
     }
@@ -72,7 +70,7 @@ class FoodContract extends Contract {
         }
         _package = JSON.parse(_package.toString());
         _package.distributionCenterID = _dateOfDistribution;
-        _package.dateOfDistribution = _distributionCenterID
+        _package.dateOfDistribution = _distributionCenterID;
 
         await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(_package)));
     }
@@ -85,7 +83,7 @@ class FoodContract extends Contract {
 
         _package = JSON.parse(_package.toString());
         _package.storeID = _storeID;
-        _package.dateOfDelivery = _dateOfDelivery
+        _package.dateOfDelivery = _dateOfDelivery;
 
         await ctx.stub.putState(_packageID, Buffer.from(JSON.stringify(_package)));
     }

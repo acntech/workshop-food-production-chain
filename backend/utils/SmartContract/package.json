@@ -1,6 +1,6 @@
 {
     "name": "FoodContract",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "My Smart Contract",
     "main": "index.js",
     "engines": {
