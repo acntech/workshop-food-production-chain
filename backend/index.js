@@ -54,6 +54,38 @@ app.get('/getItem/:itemID', (req, res) => {
   });
 });
 
+app.get('/getAllItems', (req, res) => {
+  network.getAllItems()
+    .then((response) => {
+        let object = JSON.parse(response);
+        res.send(JSON.stringify({ status: 'success', result: object}));
+    }).catch(({message, stack}) => {
+      res.status(500);
+      res.send(JSON.stringify({ status: 'error', message, stack }));
+  });
+});
+
+
+app.get('/getAllPackages', (req, res) => {
+  network.getAllItems()
+    .then((response) => {
+        const allItems = JSON.parse(response);
+        let packages = [];
+        allItems.forEach(item => {
+          if(item.hasOwnProperty('packageID')){
+           packages.push(item)
+          }
+        });
+        res.send(JSON.stringify({ status: 'success', result: packages}));
+    }).catch(({message, stack}) => {
+      res.status(500);
+      res.send(JSON.stringify({ status: 'error', message, stack }));
+  });
+});
+
+
+//POST Routes
+
 app.post('/registerBatch', (req, res) => {
   console.log(req);
   network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, req.body.dateOfHarvest)

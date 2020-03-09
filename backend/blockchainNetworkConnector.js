@@ -41,6 +41,29 @@ exports.getItem = async function (itemID) {
     }
 }
 
+exports.getAllItems = async function () {
+    try {
+        const userExist = await doesUserExists();
+        if (userExist.userExist) {
+            const wallet = userExist.wallet;
+            const res = await connectToChannel(wallet);
+            const contract = res.contract;
+            const gateway = res.gateway;
+
+            //Run the transaction.
+            const result = await contract.submitTransaction('getAllItems');
+
+            console.log(`getAllItems - Transaction has been submitted`);
+            await gateway.disconnect();
+
+            return result;
+        }
+    } catch (error) {
+        console.error(`Failed to evaluate transaction: ${error}`);
+        throw Error(error)
+    }
+}
+
 exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dateOfHarvest) {
     try {
         let response = {}

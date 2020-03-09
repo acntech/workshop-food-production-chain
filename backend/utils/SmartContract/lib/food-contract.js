@@ -20,13 +20,14 @@ class FoodContract extends Contract {
             throw new Error(`The batch ${_batchID} already exists`);
         }
         const asset = {
-            batchID : _batchID,
-            foodID : _foodID,
-            farmID : _farmID,
-            lotNo : _lotNo,
-            dateOfHarvest : _dateOfHarvest,
-            packagingHouseID : '',
-            dateOfPackaging : ''};
+            batchID: _batchID,
+            foodID: _foodID,
+            farmID: _farmID,
+            lotNo: _lotNo,
+            dateOfHarvest: _dateOfHarvest,
+            packagingHouseID: '',
+            dateOfPackaging: ''
+        };
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(_batchID, buffer);
     }
@@ -38,12 +39,13 @@ class FoodContract extends Contract {
         }
 
         const asset = {
-            packageID : _packageID,
-            batchID : _batchID,
-            distributionCenterID : '',
-            dateOfDistribution : '',
-            storeID : '',
-            dateOfDelivery : ''};
+            packageID: _packageID,
+            batchID: _batchID,
+            distributionCenterID: '',
+            dateOfDistribution: '',
+            storeID: '',
+            dateOfDelivery: ''
+        };
 
         const buffer = Buffer.from(JSON.stringify(asset));
         await ctx.stub.putState(_packageID, buffer);
@@ -98,6 +100,29 @@ class FoodContract extends Contract {
     }
 
 
+    async getAllItems(ctx) {
+        const startKey = 'P';
+        const endKey = '';
+        const iterator = await ctx.stub.getStateByRange(startKey, endKey);
+        const allResults = [];
+        let res = await iterator.next();
+
+        while (!res.done) {
+            let Record;
+            try {
+                Record = JSON.parse(res.value.value.toString('utf8'));
+            } catch (err) {
+                console.log(err);
+                Record = res.value.value.toString('utf8');
+            }
+            allResults.push(Record);
+            res = await iterator.next();
+        }
+        await iterator.close();
+
+        console.info('end of data', allResults);
+        return JSON.stringify(allResults);
+    }
 }
 
 module.exports = FoodContract;
