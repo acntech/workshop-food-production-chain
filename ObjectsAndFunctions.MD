@@ -114,6 +114,20 @@ Returns following object:
 {"status":"success","result":{"batchID":"1","dateOfDelivery":"01022020","dateOfDistribution":"DCI1","distributionCenterID":"01022020","packageID":"PI1","storeID":"SI11"}}
 ```
 
+```
+/getAllPackages  
+
+Returns following object:
+{"status":"success","result":[{"batchID":"B1","dateOfDelivery":"","dateOfDistribution":"","dateOfPackaging":"DDMMYYYY","distributionCenterID":"","packageID":"B5","packagingHouseID":"PH1","storeID":""},{"batchID":"B1","dateOfDelivery":"DDMMYYYY","dateOfDistribution":"DDMMYYYY","distributionCenterID":"DC1","packageID":"P1","storeID":"S1"},{"batchID":"B3","dateOfDelivery":"","dateOfDistribution":"","distributionCenterID":"","packageID":"P11113","storeID":""},{"batchID":"B3","dateOfDelivery":"DDMMYYYY","dateOfDistribution":"DDMMYYYY","distributionCenterID":"DC3","packageID":"P3","storeID":"S3"}]}
+```
+
+```
+/getAllItems 
+
+Returns following object:
+{"status":"success","result":[{"batchID":"B1","dateOfHarvest":"DDMMYYYY","dateOfPackaging":"DDMMYYYY","farmID":"F1","foodID":"1","lotNo":"1","packagingHouseID":"PH1"},{"batchID":"B2","dateOfHarvest":"DDMMYYYY","dateOfPackaging":"","farmID":"F1","foodID":"1","lotNo":"1","packagingHouseID":""},{"batchID":"B3","dateOfHarvest":"DDMMYYYY","dateOfPackaging":"DDMMYYYY","farmID":"F1","foodID":"1","lotNo":"1","packagingHouseID":"PH1"},{"batchID":"B1","dateOfDelivery":"","dateOfDistribution":"","dateOfPackaging":"DDMMYYYY","distributionCenterID":"","packageID":"B5","packagingHouseID":"PH1","storeID":""},{"batchID":"B1","dateOfDelivery":"DDMMYYYY","dateOfDistribution":"DDMMYYYY","distributionCenterID":"DC1","packageID":"P1","storeID":"S1"},{"batchID":"B3","dateOfDelivery":"DDMMYYYY","dateOfDistribution":"DDMMYYYY","distributionCenterID":"DC3","packageID":"P3","storeID":"S3"}]}
+```
+
 If any route is failing, the following object will be returned.
 {"status":"error","message":"Error message"}
 
