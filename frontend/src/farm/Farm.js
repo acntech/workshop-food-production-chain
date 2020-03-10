@@ -1,34 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import Form from '../components/form/Form';
 import Input from '../components/form/input/Input';
 import Card from '../components/card/Card';
-import { registerBatch } from '../blockchain/requests';
+import { registerBatch, getFruits } from '../blockchain/requests';
 import SuccessMessage from '../components/message/SuccessMessage';
 import ErrorMessage from '../components/message/ErrorMessage';
 import useStatus from '../requests/useStatus';
 import uuid from '../uuid/uuid';
 import style from './farm.module.css';
+import Dropdown from '../components/form/dropdown/Dropdown';
 
 const Farm = () => {
-  const [{loading, error, result, status}, updateStatus] = useStatus()
-  const handleSubmit = req => registerBatch(req, updateStatus);
+  const [batchStatus, updateBatchStatus] = useStatus()
+  const [{loading, result: fruits }, updateFruitStatus] = useStatus()
+  const handleSubmit = req => registerBatch(req, updateBatchStatus);
+
+  useEffect(() => {
+    getFruits(updateFruitStatus);
+  }, []);
+  
+  const elements = fruits ? fruits.map(({ name, fruitID }) => ({ description: name, value: fruitID })) : [];
 
   return (
     <Card className={style.farm}>
       <FontAwesomeIcon icon={faTractor} size="6x"/>
       <h1>FruitFarm</h1>
       <Form onSubmit={handleSubmit}>
-      {error && <ErrorMessage title={status} messsage={error} />}
-      {result && <SuccessMessage title={status} message={result} />}
+      {batchStatus.error && <ErrorMessage title={batchStatus.status} messsage={batchStatus.error} />}
+      {batchStatus.result && <SuccessMessage title={batchStatus.status} message={batchStatus.result} />}
         <Input 
           className={style.id}
           id="farmID"
           name="farmID"
           label="Farm-id" 
-          value={uuid('F')} 
-          readOnly
+          defaultValue={uuid('F')}
+          errorMessage="Du må gi gården en id." 
+          required
           disabled={loading}
         />
         <Input 
@@ -38,14 +47,14 @@ const Farm = () => {
           label="Batch-id"
           defaultValue={uuid('B')}
           errorMessage="Du må gi batchen en id."
-          readOnly
-          disabled={loading}
+          required
+          disabled={loading}  
         />
-        <Input 
+        <Dropdown 
           id="foodID" 
           name="foodID"
           label="Food type"
-          defaultValue=""
+          elements={elements}
           required
           disabled={loading}
         />

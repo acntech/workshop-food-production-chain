@@ -3,7 +3,24 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './input.module.css';
 
-const Input = ({ id, type, label, name, required, disabled, readOnly, placeholder, value, defaultValue, defaultChecked, description, errorMessage, className}) => {
+const Input = (
+    { 
+        id, 
+        type, 
+        label, 
+        name, 
+        required,
+        disabled, 
+        readOnly, 
+        placeholder, 
+        value, 
+        defaultValue, 
+        defaultChecked, 
+        description, 
+        errorMessage, 
+        className
+    }
+) => {
 
     return (
         <div className={classNames(style.container, className)}>
@@ -38,7 +55,7 @@ Input.propTypes = {
     name: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.any,
-    label: PropTypes.string,
+    label: PropTypes.node,
     required: PropTypes.bool,
     placeholder: PropTypes.string,
     defaultValue: PropTypes.string,
@@ -46,7 +63,8 @@ Input.propTypes = {
     readOnly: PropTypes.bool,
     description: PropTypes.string,
     errorMessage: PropTypes.string,
-    defaultChecked: PropTypes.bool
+    defaultChecked: PropTypes.bool,
+    className: PropTypes.string
 };
 
 export default Input;

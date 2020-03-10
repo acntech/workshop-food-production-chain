@@ -9,13 +9,13 @@ const stores = new Array(1).map(i => uuid('S'));
 const randomStore = () => stores[Math.floor(Math.random() * stores.length)];
 
 const mockRegisterFromDistributionCenterToStore = (req, start, error, success) => postData(
-    '/registerFromDistributionCenterToStore',
+    '/api/registerFromDistributionCenterToStore',
     { ...req },
     start, error, success
   );
 
 const mockRegisterFromPackageHouseToDistributionCenter = (req, start, error, success) => postData(
-    '/registerFromPackageHouseToDistributionCenter',
+    '/api/registerFromPackageHouseToDistributionCenter',
     { ...req },
     start, error,
     res => {
@@ -29,7 +29,7 @@ const mockRegisterFromPackageHouseToDistributionCenter = (req, start, error, suc
 );
 
 const mockRegisterPackage = (req, start, error, success, repeat = 1) => postData(
-  '/registerPackage',
+  '/api/registerPackage',
   { ...req },
   () => {
     // Multiple packages registered at once
@@ -53,7 +53,7 @@ const mockRegisterPackage = (req, start, error, success, repeat = 1) => postData
 );
 
 const mockRegisterFoodFromFarmToPackageHouse = (req, start, error, success) => postData(
-  '/registerFoodFromFarmToPackageHouse',
+  '/api/registerFoodFromFarmToPackageHouse',
   { ...req },
   start,  error,
   res => {
@@ -66,7 +66,7 @@ const mockRegisterFoodFromFarmToPackageHouse = (req, start, error, success) => p
 );
 
 const mockRegisterBatch = (req, start, error, success) => postData(
-    '/registerBatch',
+    '/api/registerBatch',
     { ...req },
     start, error,
     res => {
