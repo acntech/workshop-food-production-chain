@@ -111,7 +111,7 @@ GET
 /getItem/ItemID  
 
 Returns following object:
-{"status":"success","result":{"batchID":"1","dateOfDelivery":"01022020","dateOfDistribution":"DCI1","distributionCenterID":"01022020","packageID":"PI1","storeID":"SI11"}}
+{"status":"success","result:{"batchID":"B1","foodID":"1","farmID":"F1","lotNo":"1","dateOfHarvest":"DDMMYYYY","packagingHouseID":"","dateOfPackaging":""}}
 ```
 
 ```
