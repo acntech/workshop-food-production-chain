@@ -7,7 +7,6 @@ const useStatus = (defaultStatus = {}) => {
     const [status, setStatus] = useState(defaultStatus.status);
     
   const updateStatus = (status) => {
-    console.log("updating status");
     setLoading(status.loading);
     setError(status.error);
     setResult(status.result);
