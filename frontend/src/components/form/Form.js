@@ -10,6 +10,8 @@ const mapForm = form => {
         result = {...result, ...mapInput(i)}
     });
 
+    console.log(result);
+
     return result;
 }
 

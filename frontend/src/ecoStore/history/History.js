@@ -9,10 +9,10 @@ const History = ({ events }) => (
         <h2>From farm to table</h2>
         <p>What is your FOOD's story?</p>
         <div className={style.history}>
-            {events.map(({timestamp, description}, index) => (
+            {events.map(({timestamp, description, image}, index) => (
                 <Fragment  key={timestamp}>
                     {(index !== 0) && <Arrow />}
-                    <Event timestamp={timestamp} description={description} />
+                    <Event timestamp={timestamp} description={description} image={image}/>
                 </Fragment>
             ))}
         </div>
@@ -22,7 +22,8 @@ const History = ({ events }) => (
 History.propTypes = {
     events: PropTypes.arrayOf(PropTypes.shape({
         timestamp: PropTypes.string,
-        description: PropTypes.string
+        description: PropTypes.string,
+        image: PropTypes.string
     }))
 };
 

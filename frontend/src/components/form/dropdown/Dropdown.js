@@ -80,8 +80,8 @@ Dropdown.propTypes = {
     required: PropTypes.bool,
     disabled: PropTypes.bool, 
     elements: PropTypes.arrayOf(PropTypes.shape({
-        description: PropTypes.string,
-        value: PropTypes.string
+        description: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
     })),
     errorMessage: PropTypes.string, 
     className: PropTypes.string

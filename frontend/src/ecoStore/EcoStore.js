@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStoreAlt } from '@fortawesome/free-solid-svg-icons'
 import style from './ecoStore.module.css';
@@ -8,80 +8,47 @@ import History from './history/History';
 import Card from '../components/card/Card';
 import SuccessMessage from '../components/message/SuccessMessage';
 import ErrorMessage from '../components/message/ErrorMessage';
-import useStatus from '../requests/useStatus';
-import { getItem, getPackages } from '../blockchain/requests';
-import uuid from '../uuid/uuid';
+import { getItem, getPackages, getFruits } from '../blockchain/requests';
 import Packages from './packages/packages';
+import { useRequest, useStatus } from '../requests/hooks';
+import resposponseToEvents from './responseToEvents';
 
-const resposponseToEvents = response => {
-  const events = [];
-  if (!response) return events;
+const EcoStore = () => {  
+  const fruits = useRequest(getFruits);
+  const pkgs = useRequest(getPackages);
+  const [pkg, updatePackageStatus] = useStatus({});
+  const [pkgID, setPackageID] = useState('');
   
-  if (response.dateOfHarvest) {
-    events.push({
-      timestamp: response.dateOfHarvest,
-      description: `Batch ${response.batchID} was harvested at ${response.farmID} on lotNo: ${response.lotNo}`
-    })
-  }
-  if (response.dateOfPackaging) {
-    events.push({
-      timestamp: response.dateOfPackaging,
-      description: `Was packaged at ${response.packagingHouseID}`
-    })
-  }
-  if (response.dateOfDistribution) {
-    events.push({
-      timestamp: response.dateOfDistribution,
-      description: `Was distributed by ${response.distributionCenterID}`
-    })
-  }
-  if (response.dateOfDelivery) {
-    events.push({
-      timestamp: response.dateOfDelivery,
-      description: `Was delivered to ${response.storeID}`
-    })
-  }
-  return events;
-}
-
-const EcoStore = () => {
-  const [idStatus, updateIdStatus] = useStatus()
-  const [{loading, error, result, status}, updatePackageStatus] = useStatus()
-  const [packageID, setPackageID] = useState(uuid('P'));
   const handleSubmit = req => getItem(req.packageID, updatePackageStatus);
-
-  useEffect(() => {
-    getPackages(updateIdStatus);
-  }, []);
-
+  
   return (
     <div>
       <header className={style.background}>
         <Packages 
-          packageIDs={idStatus.result} 
+          packages={pkgs.result} 
           onClick={setPackageID} 
         />
         <Card>
           <FontAwesomeIcon icon={faStoreAlt} size="6x"/>
           <h1>EcoStore</h1>
           <Form onSubmit={handleSubmit}>
-          {error && <ErrorMessage title={status} messsage={error} />}
-          {result && <SuccessMessage title={status} />}
+          {pkg.error && <ErrorMessage title={pkg.status} messsage={pkg.error} />}
+          {pkg.result && <SuccessMessage title={pkg.status} />}
             <Input 
               id="packageID"
               name="packageID"
               label="Package-Id" 
-              value={packageID} 
+              defaultValue={pkgID} 
               onChange={e => setPackageID(e.target.value)}
-              disabled={loading}
+              disabled={pkg.loading}
             />
             <Input 
               type="submit"
               value="Submit"
-              disabled={loading}
+              disabled={pkg.loading}
             />
           </Form>
-          <History events={resposponseToEvents(result)} />
+          <History events={resposponseToEvents(pkg.result, fruits.result)} />
         </Card>
       </header>
     </div>

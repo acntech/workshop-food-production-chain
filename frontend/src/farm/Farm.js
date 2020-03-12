@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import Form from '../components/form/Form';
@@ -7,29 +7,25 @@ import Card from '../components/card/Card';
 import { registerBatch, getFruits } from '../blockchain/requests';
 import SuccessMessage from '../components/message/SuccessMessage';
 import ErrorMessage from '../components/message/ErrorMessage';
-import useStatus from '../requests/useStatus';
 import uuid from '../uuid/uuid';
 import style from './farm.module.css';
 import Dropdown from '../components/form/dropdown/Dropdown';
+import { useRequest, useStatus } from '../requests/hooks';
 
 const Farm = () => {
-  const [batchStatus, updateBatchStatus] = useStatus()
-  const [{loading, result: fruits }, updateFruitStatus] = useStatus()
-  const handleSubmit = req => registerBatch(req, updateBatchStatus);
+  const [request, updateStatus] = useStatus()
+  const fruits = useRequest(getFruits);
+  const handleSubmit = req => registerBatch(req, updateStatus);
 
-  useEffect(() => {
-    getFruits(updateFruitStatus);
-  }, []);
-  
-  const elements = fruits ? fruits.map(({ name, fruitID }) => ({ description: name, value: fruitID })) : [];
+  const elements = fruits.result ? fruits.result.map(({ name, foodID }) => ({ description: name, value: foodID })) : [];
 
   return (
     <Card className={style.farm}>
       <FontAwesomeIcon icon={faTractor} size="6x"/>
       <h1>FruitFarm</h1>
       <Form onSubmit={handleSubmit}>
-      {batchStatus.error && <ErrorMessage title={batchStatus.status} messsage={batchStatus.error} />}
-      {batchStatus.result && <SuccessMessage title={batchStatus.status} message={batchStatus.result} />}
+      {request.error && <ErrorMessage title={request.status} messsage={request.error} />}
+      {request.result && <SuccessMessage title={request.status} message={request.result} />}
         <Input 
           className={style.id}
           id="farmID"
@@ -38,7 +34,7 @@ const Farm = () => {
           defaultValue={uuid('F')}
           errorMessage="Du må gi gården en id." 
           required
-          disabled={loading}
+          disabled={request.loading}
         />
         <Input 
           className={style.id}
@@ -48,7 +44,7 @@ const Farm = () => {
           defaultValue={uuid('B')}
           errorMessage="Du må gi batchen en id."
           required
-          disabled={loading}  
+          disabled={request.loading}  
         />
         <Dropdown 
           id="foodID" 
@@ -56,7 +52,7 @@ const Farm = () => {
           label="Food type"
           elements={elements}
           required
-          disabled={loading}
+          disabled={request.loading || fruits.loading}
         />
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <Input 
@@ -66,7 +62,7 @@ const Farm = () => {
             type="radio"
             description="Søndre"
             value="lotSouth"
-            disabled={loading}
+            disabled={request.loading}
             required
           />
           <Input 
@@ -75,7 +71,7 @@ const Farm = () => {
             type="radio"
             description="Nordre"
             value="lotNorth"
-            disabled={loading}
+            disabled={request.loading}
           />
           <Input 
             id="lotNo3" 
@@ -83,7 +79,7 @@ const Farm = () => {
             type="radio"
             description="Østre"
             value="lotEast"
-            disabled={loading}
+            disabled={request.loading}
           />
           <Input 
             id="lotNo4" 
@@ -91,7 +87,7 @@ const Farm = () => {
             type="radio"
             description="Vestre"
             value="lotWest"
-            disabled={loading}
+            disabled={request.loading}
           />
         </div>
         <Input 
@@ -100,12 +96,12 @@ const Farm = () => {
           name="dateOfHarvest"
           type="date"
           defaultValue="2020-02-10"
-          disabled={loading}
+          disabled={request.loading}
         />
         <Input 
           type="submit"
           value="Go"
-          disabled={loading}
+          disabled={request.loading}
         />
       </Form>
     </Card>

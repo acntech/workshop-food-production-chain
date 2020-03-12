@@ -15,5 +15,5 @@ export const useDropdown = (defaultElement = {}) => {
         setElement(defaultElement);
     }, [defaultElement])
 
-    return [{description, value}, setElement];
+    return [{value, description}, setElement];
 };

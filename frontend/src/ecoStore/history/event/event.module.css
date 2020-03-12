@@ -5,6 +5,9 @@
   align-items: center;
   color: #282c34;
 }
+.image {
+  width: 50%;
+}
 
 .container h1,h2,h3,p {
   margin: 0;

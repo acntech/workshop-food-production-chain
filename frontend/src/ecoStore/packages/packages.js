@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import Package from './package/package';
 import style from './packages.module.css';
 
-const Packages = ({ packageIDs, onClick }) => {
-    if (!packageIDs) return null;
+const Packages = ({ packages, onClick }) => {
+    if (!packages) return null;
 
     return (
         <div className={style.packages}>
-            {packageIDs.map(id => <Package key={id} packageID={id} onClick={onClick} />)}
+            {packages.map(({ packageID }) => <Package key={packageID} packageID={packageID} onClick={onClick} />)}
         </div>
     );
 };
 
 Packages.propTypes = {
-    packageIDs: PropTypes.arrayOf(PropTypes.string),
+    packages: PropTypes.array,
     onClick: PropTypes.func
 };
 

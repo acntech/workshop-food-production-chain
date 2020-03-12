@@ -1,10 +1,12 @@
 import uuid from '../uuid/uuid';
+import mockedPackages from './packages';
+import mockedFruits from './fruit';
 
 const postData = (endpoint, body, start, error, success) => {
     start();
     setTimeout(() => success({ status: 'OK - ' + endpoint }), 1500);
 };
-  
+
 const stores = new Array(1).map(i => uuid('S'));
 const randomStore = () => stores[Math.floor(Math.random() * stores.length)];
 
@@ -79,7 +81,7 @@ const mockRegisterBatch = (req, start, error, success) => postData(
     }
   );
 
-const registerBatchAndMockChain = (request, update) => {
+export const registerBatchAndMockChain = (request, update) => {
     const start = () => {};
     const error = ({ error }) => update({ error });
     const success = ({ status }) => update({ result: status });
@@ -87,4 +89,17 @@ const registerBatchAndMockChain = (request, update) => {
     mockRegisterBatch(request, start, error, success);
 }
 
-export default registerBatchAndMockChain;
+export const getMockedFruits = updateStatus => {
+  updateStatus({loading: true, error: null, result: null})
+  setTimeout(() => updateStatus({loading: false, error: null, result: mockedFruits}), 500);
+}
+
+export const getMockedPackages = updateStatus => {
+  updateStatus({loading: true, error: null, result: null})
+  setTimeout(() => updateStatus({loading: false, error: null, result: mockedPackages}), 500);
+}
+
+export const getMockedItem = updateStatus => {
+  updateStatus({loading: true, error: null, result: null})
+  setTimeout(() => updateStatus({loading: false, error: null, result: mockedPackages[0]}), 500);
+}
