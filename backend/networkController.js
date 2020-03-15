@@ -1,4 +1,5 @@
 const network = require('./blockchainNetworkConnector.js');
+let moment = require('moment')
 
 const getAllItems = (req, res) => {
   network.getAllItems()
@@ -36,7 +37,8 @@ const getItem = (req, res) => {
 };
 
 const registerBatch = (req, res) => {
-  network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, req.body.dateOfHarvest)
+  let dateOfHarvest = moment()
+  network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, dateOfHarvest)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
     }).catch(({message, stack}) => {
@@ -46,7 +48,8 @@ const registerBatch = (req, res) => {
 };
 
 const registerFoodFromFarmToPackageHouse = (req, res) => {
-  network.registerFoodFromFarmToPackageHouse(batchID, packagingHouseID, dateOfPackaging)
+  let dateOfPackaging = moment()
+  network.registerFoodFromFarmToPackageHouse(req.body.batchID, req.body.packagingHouseID, dateOfPackaging)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
     }).catch(({message, stack}) => {
@@ -66,7 +69,8 @@ const registerPackage = (req, res) => {
 };
 
 const registerFromPackageHouseToDistributionCenter = (req, res) => {
-  network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.distributionCenterID, req.body.dateOfDistribution)
+  let dateOfDistribution = moment()
+  network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.distributionCenterID, dateOfDistribution)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
     }).catch(({message, stack}) => {
@@ -76,6 +80,7 @@ const registerFromPackageHouseToDistributionCenter = (req, res) => {
 };
 
 const registerFromDistributionCenterToStore = (req, res) => {
+  let dateOfDelivery = moment()
   network.registerFromDistributionCenterToStore(req.body.packageID, req.body.storeID, req.body.dateOfDelivery)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
