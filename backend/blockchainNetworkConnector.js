@@ -87,7 +87,7 @@ exports.registerBatch = async function (_batchID, _foodID, _farmID, _lotNo, _dat
 
 
     } catch (error) {
-        console.error(`Failed to evaluate transaction in registerPackage: ${error}`);
+        console.error(`Failed to evaluate transaction in registerBatch: ${error}`);
         throw Error(error)
     }
 }

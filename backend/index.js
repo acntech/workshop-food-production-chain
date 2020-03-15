@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 const appEnv = cfenv.getAppEnv();
-const port = appEnv.port;
+const port = 6005;
 
 let controller;
 if (mocked) {

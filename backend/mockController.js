@@ -1,5 +1,6 @@
 const { uuid } = require('./utils/uuid/uuid');
 const { storeBatch, storePackage, updatePackage, getPackageIDs, getPackage } = require('./utils/mockChain/mockChainData');
+const moment = require('moment')
 
 const getAllPackages = (req, res) => {
     const packages = getPackageIDs();
@@ -18,20 +19,20 @@ const registerBatch = (req, res) => {
       body: {
           batchID : req.body.batchID,
           packagingHouseID : uuid('PH'),
-          dateOfPackaging : '2020-02-02'
+          dateOfPackaging : moment().format()
       }
   });
 };
 
 const registerFoodFromFarmToPackageHouse = (req, res) => {
-  const { batchID, packagingHouseID, dateOfPackaging } = req.body;
+  const { batchID, packagingHouseID } = req.body;
   for (let i = 0; i <= 5; i++) {
     registerPackage({
         body: {
             packageID: uuid('P'),
             batchID,
             packagingHouseID,
-            dateOfPackaging
+            moment().format()
       }
     });
   }
@@ -43,7 +44,7 @@ const registerPackage = (req, res) => {
       body: {
           packageID : req.body.packageID,
           distributionCenterID : uuid('DC'),
-          dateOfDistribution : '2020-02-12'
+          dateOfDistribution : moment().format()
       }
   }), 100);
 };
@@ -54,7 +55,7 @@ const registerFromPackageHouseToDistributionCenter = (req, res) => {
       body: {
           packageID : req.body.packageID,
           storeID : uuid('S'),
-          dateOfDelivery : '2020-02-20'
+          dateOfDelivery : moment().format()
       }
   }), 300);
 };

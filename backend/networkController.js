@@ -1,5 +1,5 @@
 const network = require('./blockchainNetworkConnector.js');
-let moment = require('moment')
+const moment = require('moment')
 
 const getAllItems = (req, res) => {
   network.getAllItems()
@@ -37,7 +37,7 @@ const getItem = (req, res) => {
 };
 
 const registerBatch = (req, res) => {
-  let dateOfHarvest = moment()
+  let dateOfHarvest = moment().format()
   network.registerBatch(req.body.batchID, req.body.foodID, req.body.farmID, req.body.lotNo, dateOfHarvest)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
@@ -48,7 +48,7 @@ const registerBatch = (req, res) => {
 };
 
 const registerFoodFromFarmToPackageHouse = (req, res) => {
-  let dateOfPackaging = moment()
+  let dateOfPackaging = moment().format()
   network.registerFoodFromFarmToPackageHouse(req.body.batchID, req.body.packagingHouseID, dateOfPackaging)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
@@ -69,7 +69,7 @@ const registerPackage = (req, res) => {
 };
 
 const registerFromPackageHouseToDistributionCenter = (req, res) => {
-  let dateOfDistribution = moment()
+  let dateOfDistribution = moment().format()
   network.registerFromPackageHouseToDistributionCenter(req.body.packageID, req.body.distributionCenterID, dateOfDistribution)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
@@ -80,7 +80,7 @@ const registerFromPackageHouseToDistributionCenter = (req, res) => {
 };
 
 const registerFromDistributionCenterToStore = (req, res) => {
-  let dateOfDelivery = moment()
+  let dateOfDelivery = moment().format()
   network.registerFromDistributionCenterToStore(req.body.packageID, req.body.storeID, req.body.dateOfDelivery)
     .then(({msg}) => {
         res.send(JSON.stringify({ status: 'Success', result: msg }));
