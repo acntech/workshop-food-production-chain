@@ -22,7 +22,7 @@
     "express": "^4.16.4",
     "fabric-ca-client": "1.4.7",
     "fabric-network": "1.4.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "morgan": "^1.9.1"
   }
 }
